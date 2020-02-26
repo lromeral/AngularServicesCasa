@@ -1,3 +1,20 @@
-<div class="container">
-  <button (click)="showCountries()">Paises</button>
+
+<div calls="container">
+  <p-table #dt [columns]= "cols" [value]= "miArray" [paginator]="true" [rows]="20">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let cols of columns">{{cols}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-myArray>
+      <tr>
+          <td>{{myArray.nombre}}</td>
+          <td><img [src]=myArray.bandera width="50px"></td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorright">
+    <button type="button" pButton icon="fa-cloud-upload"></button>
+  </ng-template>
+  </p-table>
+
 </div>
