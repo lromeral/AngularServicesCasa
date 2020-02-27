@@ -17,6 +17,8 @@ export class RestCountriesService {
     console.log ("servicio");
 
     return this.http.get<any[]>(url);
+
+
   };
 
 

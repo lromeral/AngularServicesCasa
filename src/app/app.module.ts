@@ -5,11 +5,13 @@ import {TableModule} from 'primeng/table';
 
 import { AppComponent } from './app.component';
 import { CountriesmoduleComponent } from './countriesmodule/countriesmodule.component';
+import { PersonasComponent } from './personas/personas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CountriesmoduleComponent
+    CountriesmoduleComponent,
+    PersonasComponent
   ],
   imports: [
     BrowserModule,
