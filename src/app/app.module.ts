@@ -9,6 +9,7 @@ import { PersonasComponent } from './personas/personas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     TableModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
