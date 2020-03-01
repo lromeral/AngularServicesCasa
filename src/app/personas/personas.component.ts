@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PersonasService } from '../services/personas.service';
+import { Observable } from 'rxjs';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
+
+
+
 
 //
 @Component({
@@ -14,34 +21,50 @@ export class PersonasComponent implements OnInit {
 
   cols: any[];
   displayedColumns: string[] = ['avatar', 'nombre'];
-  dataSource: string;
   personas: any[] = [];
   otroArray: any[] = [];
+  personasObs: Observable<any[]>;
+  isLoading: boolean = false;
+
+  columnsToDisplay: string[] = ['avatar', 'nombre', 'apellido', 'email', 'ciudad', 'sueldo'];
+
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(): void {
 
-    this.cols = [
-      { nombre: 'avatar', display: "Avatar", width: '10%' },
-      { nombre: 'nombre', display: "Nombre" },
-      { nombre: 'apellido', display: "Apellido" },
-      { nombre: 'email', display: "E-mail" },
-      { nombre: 'ciudad', display: "Ciudad" },
-      { nombre: 'sueldo', display: "Sueldo" }
-
-    ]
     this.getPersonas()
 
+  }
 
+  ngAfterViewInit() {
 
   }
 
   getPersonas() {
-    this.personasService.getPersonas().subscribe(
+    this.isLoading = true;
+    this.personasObs = this.personasService.getPersonas();
+
+
+    this.personasObs.subscribe(
       data => {
         this.personas = data
         //console.log(this.personas);
       },
       err => console.log(err),
-      () => console.log(this.personas.length))
+      () => {
+        this.paginador();
+        this.isLoading = false});
+
   }
+
+  paginador(){
+    this.dataSource= new MatTableDataSource(this.personas);
+    this.dataSource.paginator = this.paginator;
+  }
+
+
 }
+
+

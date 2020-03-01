@@ -10,13 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSliderModule } from '@angular/material/slider';
-
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { WeathermoduleComponent } from './weathermodule/weathermodule.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountriesmoduleComponent,
-    PersonasComponent
+    PersonasComponent,
+    WeathermoduleComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,9 @@ import { MatSliderModule } from '@angular/material/slider';
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSliderModule
+    MatSliderModule,
+    MatProgressSpinnerModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

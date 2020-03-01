@@ -1,22 +1,70 @@
 <div class="container">
-<p-table #dt [value]="personas" [paginator]="true" [rows]="10">
+  <p-table #dt [value]="personas" [paginator]="true" [rows]="10">
     <ng-template pTemplate="header">
-        <tr>
-            <th *ngFor="let col of cols">
-                {{col.display}}
-                <input *ngIf = "col.nombre !='avatar'" pInputText type="text" (input)="dt.filter($event.target.value, col.nombre, 'contains')">
-            </th>
-        </tr>
+      <tr>
+        <th *ngFor="let col of cols">
+          {{col.display}}
+          <input *ngIf="col.nombre !='avatar'" pInputText type="text"
+            (input)="dt.filter($event.target.value, col.nombre, 'contains')">
+        </th>
+      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-personas>
-        <tr>
-            <td style="width: 10px;"><img [src]="personas.avatar"></td>
-            <td>{{personas.nombre}}</td>
-            <td>{{personas.apellido}}</td>
-            <td>{{personas.email}}</td>
-            <td>{{personas.ciudad}}</td>
-            <td>{{personas.sueldo}}</td>
-        </tr>
+      <tr>
+        <td style="width: 10px;"><img [src]="personas.avatar"></td>
+        <td>{{personas.nombre}}</td>
+        <td>{{personas.apellido}}</td>
+        <td>{{personas.email}}</td>
+        <td>{{personas.ciudad}}</td>
+        <td>{{personas.sueldo}}</td>
+      </tr>
     </ng-template>
-</p-table>
+  </p-table>
+</div>
+
+<br />
+
+<div class="container" *ngIf='isLoading'>
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="container">
+
+  <table #matTable mat-table [dataSource]="personas" class="mat-elevation-z8" matSort>
+
+    <ng-container matColumnDef="avatar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let p"><img src="{{p.avatar}}"></td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>nombre</th>
+      <td mat-cell *matCellDef="let p">{{p.nombre}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef>apellidor</th>
+      <td mat-cell *matCellDef="let p">{{p.apellido}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>email</th>
+      <td mat-cell *matCellDef="let p">{{p.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ciudad">
+      <th mat-header-cell *matHeaderCellDef>ciuidad</th>
+      <td mat-cell *matCellDef="let p">{{p.ciudad}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sueldo">
+      <th mat-header-cell *matHeaderCellDef>sueldo</th>
+      <td mat-cell *matCellDef="let p">{{p.sueldo}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns:columnsToDisplay;"></tr>
+  </table>
+  <mat-paginator #matPaginador [pageSize]="10"
+  [pageSizeOptions]="[5, 10,15]"></mat-paginator>
 </div>
