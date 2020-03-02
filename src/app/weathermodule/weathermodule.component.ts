@@ -16,23 +16,25 @@ export class WeathermoduleComponent implements OnInit {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        loc => this.geoLoc= loc,
+        loc => this.getWeather(loc),
         err => console.log(err)
       );
     }
     else {
       console.log("No geoloc");
     }
-    /*
-          this.weatherService.getPronostico(this.geoLoc.coords.latitude ,this.geoLoc.coords.longitude).subscribe(
-            res => console.log(res),
-            err => console.log(err),
-            ()=> console.log('ok'));
-     */
+
+
+
 
 
   }
 
-
+getWeather(loc: Position){
+  this.weatherService.getPronostico(loc.coords.latitude, loc.coords.longitude).subscribe(
+    res => console.log(res),
+    err => console.log(err),
+    ()=> console.log('ok'));
+}
 
 }

@@ -12,8 +12,8 @@ export class WeatherService {
   }
 
   getPronostico (lat: number, long: number): Observable<any[]>{
-      let sToken: string='8a74115ead76512425ee50d4249fae0e';
-      let stringUrl: string= 'pro.openweathermap.org/data/2.5/forecast/hourly?lat=' + lat + '&lon=' + long  + '&appid=' + sToken;
+      let sToken: string='df79bb0a6882db362aa79d760f43183a';
+      let stringUrl: string= 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + long  + '&appid=' + sToken;
 
       return this.http.get<any[]>(stringUrl);
   }
