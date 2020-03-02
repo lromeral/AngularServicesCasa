@@ -12,6 +12,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { WeathermoduleComponent } from './weathermodule/weathermodule.component';
+import {CardModule} from 'primeng/card';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { WeathermoduleComponent } from './weathermodule/weathermodule.component'
     MatTableModule,
     MatPaginatorModule,
     MatSliderModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CardModule
 
   ],
   providers: [],

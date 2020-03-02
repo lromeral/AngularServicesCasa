@@ -1,1 +1,39 @@
-<p>weathermodule works!</p>
+<!-- <div class="container">
+    <table class="table" #dt>
+        <thead>
+            <th scope="col" *ngFor="let element of weatherCols">{{element.nombre}}</th>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let element of weatherData">
+                <td scope="row">{{(element.dt * 1000) + utcHourMilliseconds  |date: 'dd-MM-yyyy HH:mm'}}</td>
+                <td scope="row">{{(element.main.temp)}} (Min:{{element.main.temp_min|number}}ºC / Max:{{element.main.temp_max|number}})</td>
+                <td scope="row">{{(element.main.humidity)| number}} %Hr</td>
+                <td scope="row">{{(element.main.pressure)| number}}</td>
+                <td scope="row"><img class="icon" src="http://openweathermap.org/img/wn/{{element.weather[0].icon}}@2x.png"></td>
+                <td scope="row">{{(element.weather[0].description)}}</td>
+                <td scope="row">{{(element.clouds.all)}}%</td>
+            </tr>
+            
+        </tbody>
+    </table>    
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col"*ngFor="let element of weatherData; let i=index;">
+            <div class="card" style="width: 10rem; height: 25rem;">
+                <div class="card-header">
+                    {{(element.dt * 1000) + utcHourMilliseconds  |date: 'EEEE'}}
+                    <br />
+                    {{(element.dt * 1000) + utcHourMilliseconds  |date: 'dd-MM-yyyy'}}
+                </div>
+                <img class="card-img-top" src="http://openweathermap.org/img/wn/{{element.weather[0].icon}}@2x.png"
+                    alt="{{(element.weather[0].description)}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{(element.dt * 1000) + utcHourMilliseconds  |date: 'HH:mm'}}</h5>
+                    <p class="card-text">{{(element.weather[0].description)}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
